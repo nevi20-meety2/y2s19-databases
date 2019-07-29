@@ -18,13 +18,22 @@ def add_article(name, topic, rating):
 	
 
 def query_all_articles():
-	pass
+	articles = session.query(Knowledge).all()
+	print(articles)
 
-def query_article_by_topic():
-	pass
+query_all_articles()
 
-def delete_article_by_topic():
-	pass
+def query_article_by_topic(topic):
+	bytopic = session.query(Knowledge).filter_by(topic=topic).all()
+
+	return bytopic
+print (query_article_by_topic("Boy Bands"))
+
+def delete_article_by_topic(topic):
+	session.query(Knowledge).filter_by(topic=topic).delete()
+	session.commit()
+
+delete_article_by_topic("Supernatural")
 
 def delete_all_articles():
 	pass
@@ -33,4 +42,6 @@ def edit_article_rating():
 	pass
 
 
-add_article("One Direction", "Boy Bands", 10)
+# add_article("One Direction", "Boy Bands", 10)
+# add_article("Vampires", "Supernatural", 5)
+# add_article("Heart", "Human Body", 8)
